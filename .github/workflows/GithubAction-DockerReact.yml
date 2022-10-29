@@ -8,5 +8,5 @@ jobs:
       - run: echo "build images"
       - run: docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
       - run: echo "build & run container"
-      - run: docker run zhaiwentao/docker-react npm run test -- --coverage
+      - run: docker run -e CI=true zhaiwentao/docker-react npm run test
       
