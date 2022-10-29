@@ -10,7 +10,7 @@ jobs:
     
     steps:
       
-      - uses: GSW11/docker-react@master
+      - uses: actions/checkout@v3
       
       - name: build docker images
         working-directory: ./
