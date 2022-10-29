@@ -1,0 +1,22 @@
+name: Docker-React
+
+on: push
+
+jobs: 
+  
+  build-container:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      
+      - uses: actions/main@v1
+      
+      - name: build docker images
+        working-directory: ./
+        run: docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
+        
+      - name: run docker container
+        working-directory: ./
+        run: docker run zhaiwentao/docker-react npm run test -- --coverage
+      
