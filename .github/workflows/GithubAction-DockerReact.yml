@@ -15,6 +15,10 @@ jobs:
       - name: build docker images
         working-directory: ./
         run: docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
+
+      - name: show docker images
+        working-directory: ./
+        run: docker images
         
       # - name: run docker container
       #   working-directory: ./
