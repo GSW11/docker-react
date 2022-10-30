@@ -1,12 +1,30 @@
 name: Docker-React
 on: [push]
 jobs: 
-  build-container:
+  test&build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
       - uses: actions/checkout@v3
-      - run: echo "build images"
-      - run: docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
-      - run: echo "build & run container"
-      - run: docker run -e CI=true zhaiwentao/docker-react npm run test
+        run: |
+        echo "build images"
+        docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
+        echo "build & run container"
+        docker run -e CI=true zhaiwentao/docker-react npm run test
       
+      - name: Build
+        run: docker run -e CI=true zhaiwentao/docker-react npm run build
+  
+  deploy:
+    needs: build&test
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
