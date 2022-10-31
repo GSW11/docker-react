@@ -3,22 +3,21 @@ on:
   push:
     branches:
       - 'master'
-  jobs:
-    buildANDtest:
-      runs-on: ubuntu-latest
-      steps:
+jobs:
+  buildANDtest:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
 
-        -
-          name: Checkout
-          uses: actions/checkout@v3
-
-        -
-          name: test
-          run: docker run -e CI=true npm run test
-
-        -
-          name: build
-          run: docker run -e CI=true npm run build
-        
-        - name: check
-          run: ls
+      -
+        name: test
+        run: docker run -e CI=true npm run test
+      
+      -
+        name: build
+        run: docker run -e CI=true npm run build
+      
+      - name: check
+        run: ls
