@@ -24,11 +24,11 @@ jobs:
 
       -
         name: Test
-        run: docker run -e CI=true npm run test
+        run: docker run -e CI=true zhaiwentao/docker-react npm run test
       
       -
         name: Build
-        run: docker run -e CI=true npm run build
+        run: docker run -e CI=true zhaiwentao/docker-react npm run build
       
       - name: Check
         run: ls
