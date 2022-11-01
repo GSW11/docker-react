@@ -10,6 +10,10 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
 
       -
         name: Docker login
@@ -20,10 +24,6 @@ jobs:
 
       - 
         name: Build Image
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
         run: |
           docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
 
