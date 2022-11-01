@@ -15,5 +15,5 @@ COPY . .
 RUN npm run build
 # /usr/app/build  <-- build files
 
-FROM nginx
-COPY --from=builder /usr/app/build /usr/share/nginx/html
+# FROM nginx
+# COPY --from=builder /usr/app/build /usr/share/nginx/html

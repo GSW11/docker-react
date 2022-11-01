@@ -62,5 +62,9 @@ jobs:
         run: docker build -f Dockerfile.prod -t zhaiwentao/docker-react-build .
       
       -
-        name: check file
-        run: docker run -e CI=true zhaiwentao/docker-react-build ls -l /usr/app
+        name: CP Static File to Local System
+        run: docker cp $(docker run -d -e CI=true zhaiwentao/docker-react-build):/usr/app/build ./build
+
+      -
+        name: Check File
+        run: ls ./build
