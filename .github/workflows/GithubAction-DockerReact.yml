@@ -4,40 +4,40 @@ on:
     branches:
       - 'master'
 jobs:
-  Build_Image_and_Test:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v3
+  # Build_Image_and_Test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     -
+  #       name: Checkout
+  #       uses: actions/checkout@v3
 
-      -
-        name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
+  #     -
+  #       name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #         cache: 'npm'
 
-      -
-        name: Docker login
-        uses: docker/login-action@v2
-        with:
-          username: wentaozhai
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+  #     -
+  #       name: Docker login
+  #       uses: docker/login-action@v2
+  #       with:
+  #         username: wentaozhai
+  #         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - 
-        name: Build Image
-        run: |
-          docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
+  #     - 
+  #       name: Build Image
+  #       run: |
+  #         docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
 
-      -
-        name: Test
-        run: docker run -e CI=true zhaiwentao/docker-react npm run test
+  #     -
+  #       name: Test
+  #       run: docker run -e CI=true zhaiwentao/docker-react npm run test
 
   Build_Static_File_and_Deploy:
     runs-on: ubuntu-latest
-    if: ${{ always() }}
-    needs: Build_Image_and_Test
+    # if: ${{ always() }} # 总是执行 工作流环境需关闭
+    # needs: Build_Image_and_Test # 执行顺序
     steps:
       -
         name: Checkout
@@ -63,4 +63,4 @@ jobs:
       
       -
         name: check file
-        run: docker run -e CI=true zhaiwentao/docker-react-build ls
+        run: docker run -e CI=true zhaiwentao/docker-react-build ls -l /usr/app/build
