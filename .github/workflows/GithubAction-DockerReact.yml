@@ -36,6 +36,8 @@ jobs:
 
   Build_Static_File_and_Deploy:
     runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: Build_Image_and_Test
     steps:
       -
         name: Checkout
@@ -61,4 +63,4 @@ jobs:
       
       -
         name: check file
-        run: docker run -it zhaiwentao/docker-react-build ls
+        run: docker run -e CI=true zhaiwentao/docker-react-build ls
