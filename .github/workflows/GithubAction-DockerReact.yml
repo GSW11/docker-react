@@ -63,4 +63,4 @@ jobs:
       
       -
         name: check file
-        run: docker run -e CI=true zhaiwentao/docker-react-build ls -l /usr/app/build
+        run: docker run -e CI=true zhaiwentao/docker-react-build ls -l /usr/app
