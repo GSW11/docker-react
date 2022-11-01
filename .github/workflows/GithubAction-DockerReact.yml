@@ -67,4 +67,4 @@ jobs:
 
       -
         name: Check File
-        run: ls ./build
+        run: echo ${{ steps.deployment.outputs.page_url }}
