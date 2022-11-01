@@ -20,7 +20,12 @@ jobs:
 
       - 
         name: Build Image
-        run: docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+        run: |
+          docker build -f Dockerfile.dev -t zhaiwentao/docker-react .
 
       -
         name: Test
@@ -31,4 +36,4 @@ jobs:
         run: docker run -e CI=true zhaiwentao/docker-react npm run build
       
       - name: Check Build File
-        run: docker run -e CI=true zhaiwentao/docker-react ls -l /user/app/build
+        run: docker run -e CI=true zhaiwentao/docker-react ls /usr/app
