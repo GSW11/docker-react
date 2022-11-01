@@ -4,7 +4,7 @@ on:
     branches:
       - 'master'
 jobs:
-  Build Image and Test:
+  Build_Image_and_Test:
     runs-on: ubuntu-latest
     steps:
       -
@@ -34,7 +34,7 @@ jobs:
         name: Test
         run: docker run -e CI=true zhaiwentao/docker-react npm run test
 
-  Build Static File and Deploy:
+  Build_Static_File_and_Deploy:
     runs-on: ubuntu-latest
     steps:
       -
