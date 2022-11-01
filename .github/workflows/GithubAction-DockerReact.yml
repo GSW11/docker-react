@@ -31,4 +31,4 @@ jobs:
         run: docker run -e CI=true zhaiwentao/docker-react npm run build
       
       - name: Check Build File
-        run: docker run -e CI=true zhaiwentao/docker-react /user/app ls -l /user/app/build
+        run: docker run -e CI=true zhaiwentao/docker-react ls -l /user/app/build
