@@ -69,5 +69,5 @@ jobs:
         name: GitHub Pages Deploy action
         uses: peaceiris/actions-gh-pages@v3
         with: 
-          github_token: ${{ DOCKER_REACT_GITHUB_TOKEN }}
+          github_token: ${{ secrets.DOCKER_REACT_GITHUB_TOKEN }}
           publish_dir: ./build
